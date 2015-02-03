@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using ViagoWatcher.Model.Connector.Dto;
 
-namespace ViagoWatcher.Model.Connector
+namespace ViagogoWatcher.Model.Connector
 {
     public class ViagogoConnector
     {
