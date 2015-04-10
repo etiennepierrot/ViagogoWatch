@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Timers;
-using ViagogoWatcher.ConsoleWatcher;
 using ViagogoWatcher.Model.Connector;
 using ViagogoWatcher.Model.Connector.Dto;
-using ViagoWatcher.Model.Connector.Dto;
 
-namespace ConsoleWatcher
+namespace ViagogoWatcher.ConsoleWatcher
 {
     public class ViagogoAlert
     {

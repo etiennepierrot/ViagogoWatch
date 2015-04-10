@@ -1,33 +1,25 @@
 ﻿using Topshelf;
 
-namespace ConsoleWatcher
+namespace ViagogoWatcher.ConsoleWatcher
 {
     class Program
     {
         static void Main(string[] args)
         {
-
-
-            HostFactory.Run(x =>                                 //1
+            HostFactory.Run(x =>                                 
             {
-                x.Service<ViagogoAlert>(s =>                        //2
+                x.Service<ViagogoAlert>(s =>                        
                 {
-                    s.ConstructUsing(name => new ViagogoAlert());     //3
-                    s.WhenStarted(tc => tc.Watch());              //4
-                    s.WhenStopped(tc => tc.Stop());               //5
+                    s.ConstructUsing(name => new ViagogoAlert());    
+                    s.WhenStarted(tc => tc.Watch());             
+                    s.WhenStopped(tc => tc.Stop());              
                 });
-                x.RunAsLocalSystem();                            //6
+                x.RunAsLocalSystem();                            
 
-                x.SetDescription("ViagogoWatcher");        //7
-                x.SetDisplayName("ViagogoWatcher");                       //8
-                x.SetServiceName("ViagogoWatcher");                       //9
-            });           
-
-
-
-
-            
-
+                x.SetDescription("ViagogoWatcher");       
+                x.SetDisplayName("ViagogoWatcher");                     
+                x.SetServiceName("ViagogoWatcher");                       
+            });      
             
         }
     }
