@@ -1,4 +1,8 @@
-﻿using Topshelf;
+﻿using System.Configuration;
+using Topshelf;
+using ViagogoWatcher.Model.Alerts;
+using ViagogoWatcher.Model.DependancyInjector;
+using ViagogoWatcher.Model.Mailings;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {
@@ -8,9 +12,9 @@ namespace ViagogoWatcher.ConsoleWatcher
         {
             HostFactory.Run(x =>                                 
             {
-                x.Service<ViagogoAlert>(s =>                        
+                x.Service<IViagogoAlert>(s =>                        
                 {
-                    s.ConstructUsing(name => new ViagogoAlert());    
+                    s.ConstructUsing(name => ViagogoAlert());    
                     s.WhenStarted(tc => tc.Watch());             
                     s.WhenStopped(tc => tc.Stop());              
                 });
@@ -21,6 +25,25 @@ namespace ViagogoWatcher.ConsoleWatcher
                 x.SetServiceName("ViagogoWatcher");                       
             });      
             
+        }
+
+        private static IViagogoAlert ViagogoAlert()
+        {
+            IConfMailingFactory confMailingFactory = new ConfMailingFactoryBuilder()
+                .WithSettings(ConfigurationManager.AppSettings)
+                .Build();
+
+            ConfMailing confMailing = confMailingFactory.CreateConfMailing();
+
+            IMailerService mailerService = new MailerServiceBuilder()
+                .WithConfMailing(confMailing)
+                .Build();
+
+            IViagogoAlert viagogoAlert = new ViagogoAlertBuilder()
+                .WithMailService(mailerService)
+                .Build();
+
+            return viagogoAlert;
         }
     }
 }

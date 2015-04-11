@@ -4,22 +4,33 @@ using System.Linq;
 using System.Timers;
 using ViagogoWatcher.Model.Connector;
 using ViagogoWatcher.Model.Connector.Dto;
+using ViagogoWatcher.Model.Mailings;
+using ViagogoWatcher.Model.Moneys;
 
-namespace ViagogoWatcher.ConsoleWatcher
+namespace ViagogoWatcher.Model.Alerts
 {
-    public class ViagogoAlert
+    public class ViagogoAlert : IViagogoAlert
     {
         const string baseUrl = @"http://www.viagogo.fr/";
         readonly string pathToWatch = ConfigurationManager.AppSettings["UrlEvent"];
         readonly string mailingList = ConfigurationManager.AppSettings["MailingList"];
         readonly string alertName = ConfigurationManager.AppSettings["AlertName"];
-        readonly int maxPricingInEur = int.Parse(ConfigurationManager.AppSettings["MaxPricingInEur"]);
+        readonly Money maxPricingInEur = MaxPricingInEur();
+
+        private static Money MaxPricingInEur()
+        {
+            int pricingInEur = int.Parse(ConfigurationManager.AppSettings["MaxPricingInEur"]);
+            return new Money(pricingInEur);
+        }
+
         private readonly Timer _timer;
+        private readonly IMailerService _mailerService;
         readonly IList<string> urlSended = new List<string>();
 
 
-        public ViagogoAlert()
+        public ViagogoAlert(IMailerService mailerService)
         {
+            _mailerService = mailerService;
             _timer = new Timer(int.Parse(ConfigurationManager.AppSettings["TimingRefreshInMs"]))
             {
                 AutoReset = true,
@@ -43,10 +54,10 @@ namespace ViagogoWatcher.ConsoleWatcher
 
             if (productLowerPrice.RawPrice < maxPricingInEur)
             {
-                if (!urlSended.Contains(productLowerPrice.BuyUrl))
+                if (!urlSended.Contains(productLowerPrice.BuyUrl.ToString()))
                 {
-                    Mailer.SendMail(mailingList, alertName, productLowerPrice);
-                    urlSended.Add(productLowerPrice.BuyUrl);
+                    _mailerService.SendMail(mailingList, alertName, productLowerPrice);
+                    urlSended.Add(productLowerPrice.BuyUrl.ToString());
                 }
             }
         }
@@ -54,7 +65,7 @@ namespace ViagogoWatcher.ConsoleWatcher
         public void Stop()
         {
             _timer.Stop();
-            Mailer.SendStopMail();
+            _mailerService.SendStopMail();
         }
 
 

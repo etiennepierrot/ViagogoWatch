@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,11 +51,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alerts\Alert.cs" />
+    <Compile Include="Alerts\IViagogoAlert.cs" />
+    <Compile Include="Alerts\ViagogoAlert.cs" />
     <Compile Include="Connector\Dto\ContentDto.cs" />
     <Compile Include="Connector\Dto\ProductDto.cs" />
     <Compile Include="Connector\ViagogoConnector.cs" />
+    <Compile Include="DependancyInjector\ConfMailingFactoryBuilder.cs" />
+    <Compile Include="DependancyInjector\MailerServiceBuilder.cs" />
+    <Compile Include="DependancyInjector\StmpClientFacadeBuilder.cs" />
+    <Compile Include="DependancyInjector\ViagogoAlertBuilder.cs" />
     <Compile Include="HtmlViagogoParser\Class1.cs" />
+    <Compile Include="Mailings\ConfMailing.cs" />
+    <Compile Include="Mailings\ConfMailingFactory.cs" />
+    <Compile Include="Mailings\Credential.cs" />
+    <Compile Include="Mailings\MailerService.cs" />
+    <Compile Include="Mailings\SmtpServer.cs" />
+    <Compile Include="Mailings\StmpClientFacade.cs" />
+    <Compile Include="Moneys\Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Urls\Url.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
