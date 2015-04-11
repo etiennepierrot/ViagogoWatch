@@ -51,15 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alerts\Alert.cs" />
-    <Compile Include="Alerts\PriceChecker.cs" />
     <Compile Include="Connector\Dto\ContentDto.cs" />
     <Compile Include="Connector\Dto\ProductDto.cs" />
     <Compile Include="Connector\ViagogoConnector.cs" />
     <Compile Include="DependancyInjector\ConfMailingFactoryBuilder.cs" />
+    <Compile Include="DependancyInjector\EventCheckerBuilder.cs" />
     <Compile Include="DependancyInjector\MailerServiceBuilder.cs" />
-    <Compile Include="DependancyInjector\PriceCheckerBuilder.cs" />
     <Compile Include="DependancyInjector\StmpClientFacadeBuilder.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventChecker.cs" />
+    <Compile Include="Events\IEventRepository.cs" />
     <Compile Include="HtmlViagogoParser\Class1.cs" />
     <Compile Include="Mailings\ConfMailing.cs" />
     <Compile Include="Mailings\ConfMailingFactory.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="Mailings\SmtpClientFacade.cs" />
     <Compile Include="Moneys\Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subscriptions\ISubscriptionRepository.cs" />
+    <Compile Include="Subscriptions\Subscription.cs" />
     <Compile Include="Urls\Url.cs" />
   </ItemGroup>
   <ItemGroup>

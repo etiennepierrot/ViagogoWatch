@@ -13,10 +13,9 @@ namespace ViagogoWatcher.Model.Mailings
 
         public void Send(string mail, string subject, string body)
         {
-            MailMessage mailMessage = new MailMessage { From = new MailAddress(_confMailing.From) };
-
+            MailMessage mailMessage = new MailMessage { From = new MailAddress(_confMailing.From + "@gmail.com") };
             mailMessage.To.Add(mail);
-            
+
             mailMessage.Subject = subject;
             mailMessage.Body = body;
 

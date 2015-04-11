@@ -1,28 +1,29 @@
 using System.Configuration;
 using System.Timers;
-using ViagogoWatcher.Model.Alerts;
+using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Mailings;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {
-    public class CheckTimer : ICheckTimer
+    public class ClockTimer : IClockTimer
     {
         private readonly Timer _timer;
         public readonly IMailerService _mailerService;
-        private readonly IPriceChecker _priceChecker;
+        private readonly IEventChecker _eventChecker;
 
 
-        public CheckTimer(IMailerService mailerService, IPriceChecker priceChecker)
+        public ClockTimer(IMailerService mailerService, IEventChecker eventChecker)
         {
             _mailerService = mailerService;
-            _timer = new Timer(int.Parse(ConfigurationManager.AppSettings["TimingRefreshInMs"]))
+            int interval = int.Parse(ConfigurationManager.AppSettings["TimingRefreshInMs"]);
+            _timer = new Timer(100000000)
             {
                 AutoReset = true,
                 Enabled = true,
 
             };
             _timer.Elapsed += (sender, args) => Watch();
-            _priceChecker = priceChecker;
+            _eventChecker = eventChecker;
         }
 
         public void Start()
@@ -32,7 +33,7 @@ namespace ViagogoWatcher.ConsoleWatcher
 
         public void Watch()
         {
-            _priceChecker.CheckPrice();
+            _eventChecker.Check();
         }
 
         public void Stop()

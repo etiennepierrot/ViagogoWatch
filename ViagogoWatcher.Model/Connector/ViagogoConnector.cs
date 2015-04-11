@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using RestSharp;
 using ViagogoWatcher.Model.Connector.Dto;
@@ -6,7 +7,12 @@ using ViagoWatcher.Model.Connector.Dto;
 
 namespace ViagogoWatcher.Model.Connector
 {
-    public class ViagogoConnector
+    public interface IViagogoConnector
+    {
+        IEnumerable<ProductDto> GetProduct(string url);
+    }
+
+    public class ViagogoConnector : IViagogoConnector
     {
         public IEnumerable<ProductDto> GetProduct(string url)
         {
@@ -25,8 +31,17 @@ namespace ViagogoWatcher.Model.Connector
             restRequest.AddHeader("Accept-Encoding", "gzip,deflate");
 
             var response = restClient.Execute<List<ContentDto>>(restRequest);
-            ContentDto deserializeObject = JsonConvert.DeserializeObject<ContentDto>(response.Content);
-            return deserializeObject.Items;
+            try
+            {
+                ContentDto deserializeObject = JsonConvert.DeserializeObject<ContentDto>(response.Content);
+                return deserializeObject.Items;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using ViagogoWatcher.Model.Alerts;
-using ViagogoWatcher.Model.DependancyInjector;
+﻿using ViagogoWatcher.Model.DependancyInjector;
+using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Mailings;
 
 namespace ViagogoWatcher.ConsoleWatcher
@@ -7,12 +7,12 @@ namespace ViagogoWatcher.ConsoleWatcher
     public class CheckTimerBuilder
     {
         private IMailerService _mailerService;
-        private IPriceChecker _priceChecker;
+        private IEventChecker _eventChecker;
 
         public CheckTimerBuilder()
         {
             _mailerService = new MailerServiceBuilder().Build();
-            _priceChecker = new PriceCheckerBuilder().Build();
+            _eventChecker = new EventCheckerBuilder().Build();
         }
 
         public CheckTimerBuilder WithMailService(IMailerService mailerService)
@@ -21,15 +21,15 @@ namespace ViagogoWatcher.ConsoleWatcher
             return this;
         }
 
-        public CheckTimerBuilder WithPriceChecker(IPriceChecker priceChecker)
+        public CheckTimerBuilder WithEventChecker(IEventChecker eventChecker)
         {
-            _priceChecker = priceChecker;
+            _eventChecker = eventChecker;
             return this;
         }
 
-        public ICheckTimer Build()
+        public IClockTimer Build()
         {
-            return new CheckTimer(_mailerService, _priceChecker);
+            return new ClockTimer(_mailerService, _eventChecker);
         }
     }
 }

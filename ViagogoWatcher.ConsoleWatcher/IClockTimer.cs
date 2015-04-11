@@ -1,6 +1,6 @@
 namespace ViagogoWatcher.ConsoleWatcher
 {
-    public interface ICheckTimer
+    public interface IClockTimer
     {
         void Start();
         void Watch();

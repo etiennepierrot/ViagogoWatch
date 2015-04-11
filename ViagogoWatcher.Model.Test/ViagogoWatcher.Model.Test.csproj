@@ -56,8 +56,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EventCheckerTest.cs" />
     <Compile Include="MailerServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubscriptionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

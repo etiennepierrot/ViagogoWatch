@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using ViagogoWatcher.Model.Connector.Dto;
@@ -8,8 +9,6 @@ using ViagogoWatcher.Model.Urls;
 
 namespace ViagogoWatcher.Model.Test
 {
-
-
     [TestFixture]
     public class MailerServiceTest
     {
@@ -28,18 +27,6 @@ namespace ViagogoWatcher.Model.Test
             .Build();
         }
 
-        [Test]public void 
-        SendAlert_Should_Send_A_Mail()
-        {
-            //arrange
-            ProductDto productLowerPrice = new ProductDto{BuyUrl = new Url("http://viagogo.com/buy"), RawPrice = new Money(60)};
-
-            //act
-            _mailerService.SendAlert("pricewatcher@watcher.com", "PSG - Barca", productLowerPrice);
-
-            //assert
-            _mock.Verify(x => x.Send("pricewatcher@watcher.com", "PSG - Barca - 60 EUR", "http://viagogo.com/buy"));
-        }
 
         [Test]public void
         Stop_Should_Send_Alert_Mail()

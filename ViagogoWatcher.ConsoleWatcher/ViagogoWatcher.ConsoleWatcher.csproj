@@ -49,10 +49,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICheckTimer.cs" />
+    <Compile Include="IClockTimer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CheckTimer.cs" />
+    <Compile Include="ClockTimer.cs" />
     <Compile Include="CheckTimerBuilder.cs" />
   </ItemGroup>
   <ItemGroup>

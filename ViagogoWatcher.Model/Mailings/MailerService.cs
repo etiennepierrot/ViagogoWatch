@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Text;
 using ViagogoWatcher.Model.Connector.Dto;
 
 namespace ViagogoWatcher.Model.Mailings
@@ -13,12 +15,19 @@ namespace ViagogoWatcher.Model.Mailings
             _confMailing = confMailing;
         }
 
-        public void SendAlert(string mailTo, string alertName, ProductDto productLowerPrice)
-        {
-            string subject = alertName + " - " + productLowerPrice.RawPrice;
-            string body = productLowerPrice.BuyUrl.ToString();
 
-            _smtpClientFacade.Send(mailTo, subject, body);
+        public void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products)
+        {
+            string subject = string.Format("[ViagogoWatcher] Alert : {0}", alertName);
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var productDto in products)
+            {
+                sb.AppendLine(productDto.ToString());
+            }
+
+            _smtpClientFacade.Send(mailTo, subject, sb.ToString());
         }
 
         public void Stop()
