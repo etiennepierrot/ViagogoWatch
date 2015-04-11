@@ -33,6 +33,7 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -51,15 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alerts\Alert.cs" />
-    <Compile Include="Alerts\IViagogoAlert.cs" />
-    <Compile Include="Alerts\ViagogoAlert.cs" />
+    <Compile Include="Alerts\PriceChecker.cs" />
     <Compile Include="Connector\Dto\ContentDto.cs" />
     <Compile Include="Connector\Dto\ProductDto.cs" />
     <Compile Include="Connector\ViagogoConnector.cs" />
     <Compile Include="DependancyInjector\ConfMailingFactoryBuilder.cs" />
     <Compile Include="DependancyInjector\MailerServiceBuilder.cs" />
+    <Compile Include="DependancyInjector\PriceCheckerBuilder.cs" />
     <Compile Include="DependancyInjector\StmpClientFacadeBuilder.cs" />
-    <Compile Include="DependancyInjector\ViagogoAlertBuilder.cs" />
     <Compile Include="HtmlViagogoParser\Class1.cs" />
     <Compile Include="Mailings\ConfMailing.cs" />
     <Compile Include="Mailings\ConfMailingFactory.cs" />
@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Fakes Include="Fakes\System.Configuration.fakes" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

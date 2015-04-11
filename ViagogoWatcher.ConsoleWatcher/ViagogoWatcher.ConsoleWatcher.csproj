@@ -49,8 +49,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IViagogoAlert.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViagogoAlert.cs" />
+    <Compile Include="ViagogoAlertBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

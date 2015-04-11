@@ -1,4 +1,4 @@
-namespace ViagogoWatcher.Model.Alerts
+namespace ViagogoWatcher.ConsoleWatcher
 {
     public interface IViagogoAlert
     {
