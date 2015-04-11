@@ -6,12 +6,6 @@ namespace ViagogoWatcher.Model.DependancyInjector
     {
         private ConfMailing _confMailing;
 
-        public StmpClientFacadeBuilder()
-        {
-            _confMailing = new ConfMailingFactoryBuilder().Build().CreateConfMailing();
-            
-        }
-
         public StmpClientFacadeBuilder WithConfMailing(ConfMailing confMailing)
         {
             _confMailing = confMailing;

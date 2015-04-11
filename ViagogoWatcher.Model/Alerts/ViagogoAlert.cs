@@ -56,7 +56,7 @@ namespace ViagogoWatcher.Model.Alerts
             {
                 if (!urlSended.Contains(productLowerPrice.BuyUrl.ToString()))
                 {
-                    _mailerService.SendMail(mailingList, alertName, productLowerPrice);
+                    _mailerService.SendAlert(mailingList, alertName, productLowerPrice);
                     urlSended.Add(productLowerPrice.BuyUrl.ToString());
                 }
             }
@@ -65,7 +65,7 @@ namespace ViagogoWatcher.Model.Alerts
         public void Stop()
         {
             _timer.Stop();
-            _mailerService.SendStopMail();
+            _mailerService.Stop();
         }
 
 

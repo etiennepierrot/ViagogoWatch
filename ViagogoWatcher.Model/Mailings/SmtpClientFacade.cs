@@ -2,11 +2,6 @@ using System.Net.Mail;
 
 namespace ViagogoWatcher.Model.Mailings
 {
-    public interface ISmtpClientFacade
-    {
-        void Send(MailMessage mailMessage);
-    }
-
     public class SmtpClientFacade : ISmtpClientFacade
     {
         private readonly ConfMailing _confMailing;
@@ -16,8 +11,15 @@ namespace ViagogoWatcher.Model.Mailings
             _confMailing = confMailing;
         }
 
-        public void Send(MailMessage mailMessage)
+        public void Send(string mail, string subject, string body)
         {
+            MailMessage mailMessage = new MailMessage { From = new MailAddress(_confMailing.From) };
+
+            mailMessage.To.Add(mail);
+            
+            mailMessage.Subject = subject;
+            mailMessage.Body = body;
+
             SmtpClient smtpClient = _confMailing.GetSmtpClient();
             smtpClient.Send(mailMessage);
         }

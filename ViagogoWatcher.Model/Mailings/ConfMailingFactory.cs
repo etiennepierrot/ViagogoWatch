@@ -2,11 +2,6 @@ using System.Collections.Specialized;
 
 namespace ViagogoWatcher.Model.Mailings
 {
-    public interface IConfMailingFactory
-    {
-        ConfMailing CreateConfMailing();
-    }
-
     public class ConfMailingFactory : IConfMailingFactory
     {
         private readonly NameValueCollection _settings;

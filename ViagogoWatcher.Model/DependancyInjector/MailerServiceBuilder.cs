@@ -10,8 +10,6 @@ namespace ViagogoWatcher.Model.DependancyInjector
         public MailerServiceBuilder()
         {
             _smtpClientFacade = new StmpClientFacadeBuilder().Build();
-            IConfMailingFactory confMailingFactory = new ConfMailingFactoryBuilder().Build();
-            _confMailing = confMailingFactory.CreateConfMailing();
         }
 
         public MailerServiceBuilder WithConfMailing(ConfMailing confMailing)
@@ -28,7 +26,7 @@ namespace ViagogoWatcher.Model.DependancyInjector
 
         public IMailerService Build()
         {
-            return new MailerServiceService(_smtpClientFacade, _confMailing);
+            return new MailerService(_smtpClientFacade, _confMailing);
         }
     }
 }

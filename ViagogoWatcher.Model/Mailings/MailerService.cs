@@ -1,52 +1,29 @@
-using System.Net.Mail;
 using ViagogoWatcher.Model.Connector.Dto;
 
 namespace ViagogoWatcher.Model.Mailings
 {
-    public interface IMailerService
-    {
-        void SendMail(string mailTo, string alertName, ProductDto productLowerPrice);
-        void SendStopMail();
-    }
-
-    public class MailerServiceService : IMailerService
+    public class MailerService : IMailerService
     {
         private readonly ISmtpClientFacade _smtpClientFacade;
         private readonly ConfMailing _confMailing;
 
-        public MailerServiceService(ISmtpClientFacade smtpClientFacade, ConfMailing confMailing)
+        public MailerService(ISmtpClientFacade smtpClientFacade, ConfMailing confMailing)
         {
             _smtpClientFacade = smtpClientFacade;
             _confMailing = confMailing;
         }
 
-        public void SendMail(string mailTo, string alertName, ProductDto productLowerPrice)
+        public void SendAlert(string mailTo, string alertName, ProductDto productLowerPrice)
         {
+            string subject = alertName + " - " + productLowerPrice.RawPrice;
+            string body = productLowerPrice.BuyUrl.ToString();
 
-            MailMessage mail = new MailMessage {From = new MailAddress(_confMailing.From)};
-
-            foreach (string s in mailTo.Split(';'))
-            {
-                mail.To.Add(s);
-            }
-
-            mail.Subject = alertName + " - " + productLowerPrice.RawPrice;
-            mail.Body = productLowerPrice.BuyUrl.ToString();
-
-            _smtpClientFacade.Send(mail);
+            _smtpClientFacade.Send(mailTo, subject, body);
         }
 
-        public void SendStopMail()
+        public void Stop()
         {
-            MailMessage mailMessage = new MailMessage
-            {
-                From = new MailAddress(_confMailing.From),
-                Subject = "Service Stoped",
-            };
-
-            mailMessage.To.Add(_confMailing.MailAdmin);
-
-            _smtpClientFacade.Send(mailMessage);
+            _smtpClientFacade.Send(_confMailing.MailAdmin, "Service Stoped", string.Empty);
         }
     }
 }
