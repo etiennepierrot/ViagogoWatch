@@ -4,32 +4,32 @@ using ViagogoWatcher.Model.Mailings;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {
-    public class ViagogoAlertBuilder
+    public class CheckTimerBuilder
     {
         private IMailerService _mailerService;
         private IPriceChecker _priceChecker;
 
-        public ViagogoAlertBuilder()
+        public CheckTimerBuilder()
         {
             _mailerService = new MailerServiceBuilder().Build();
             _priceChecker = new PriceCheckerBuilder().Build();
         }
 
-        public ViagogoAlertBuilder WithMailService(IMailerService mailerService)
+        public CheckTimerBuilder WithMailService(IMailerService mailerService)
         {
             _mailerService = mailerService;
             return this;
         }
 
-        public ViagogoAlertBuilder WithPriceChecker(IPriceChecker priceChecker)
+        public CheckTimerBuilder WithPriceChecker(IPriceChecker priceChecker)
         {
             _priceChecker = priceChecker;
             return this;
         }
 
-        public IViagogoAlert Build()
+        public ICheckTimer Build()
         {
-            return new ViagogoAlert(_mailerService, _priceChecker);
+            return new CheckTimer(_mailerService, _priceChecker);
         }
     }
 }

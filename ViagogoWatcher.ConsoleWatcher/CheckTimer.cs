@@ -5,14 +5,14 @@ using ViagogoWatcher.Model.Mailings;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {
-    public class ViagogoAlert : IViagogoAlert
+    public class CheckTimer : ICheckTimer
     {
         private readonly Timer _timer;
         public readonly IMailerService _mailerService;
         private readonly IPriceChecker _priceChecker;
 
 
-        public ViagogoAlert(IMailerService mailerService, IPriceChecker priceChecker)
+        public CheckTimer(IMailerService mailerService, IPriceChecker priceChecker)
         {
             _mailerService = mailerService;
             _timer = new Timer(int.Parse(ConfigurationManager.AppSettings["TimingRefreshInMs"]))

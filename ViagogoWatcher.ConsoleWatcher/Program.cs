@@ -12,7 +12,7 @@ namespace ViagogoWatcher.ConsoleWatcher
         {
             HostFactory.Run(x =>                                 
             {
-                x.Service<IViagogoAlert>(s =>                        
+                x.Service<ICheckTimer>(s =>                        
                 {
                     s.ConstructUsing(name => ViagogoAlert());    
                     s.WhenStarted(tc => tc.Watch());             
@@ -27,7 +27,7 @@ namespace ViagogoWatcher.ConsoleWatcher
             
         }
 
-        private static IViagogoAlert ViagogoAlert()
+        private static ICheckTimer ViagogoAlert()
         {
             IConfMailingFactory confMailingFactory = new ConfMailingFactoryBuilder()
                 .WithSettings(ConfigurationManager.AppSettings)
@@ -39,11 +39,11 @@ namespace ViagogoWatcher.ConsoleWatcher
                 .WithConfMailing(confMailing)
                 .Build();
 
-            IViagogoAlert viagogoAlert = new ViagogoAlertBuilder()
+            ICheckTimer checkTimer = new CheckTimerBuilder()
                 .WithMailService(mailerService)
                 .Build();
 
-            return viagogoAlert;
+            return checkTimer;
         }
     }
 }
