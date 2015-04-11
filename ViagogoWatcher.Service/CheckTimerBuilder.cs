@@ -1,6 +1,7 @@
 ﻿using ViagogoWatcher.Model.DependancyInjector;
 using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Mailings;
+using ViagogoWatcher.Service;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {

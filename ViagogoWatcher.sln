@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViagogoWatcher.ConsoleWatch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViagogoWatcher.Model", "ViagogoWatcher.Model\ViagogoWatcher.Model.csproj", "{A7DF87F2-19EE-4395-AE09-61C2D45C942C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViagogoWatcher.Service", "ViagogoWatcher.Service\ViagogoWatcher.Service.csproj", "{DE56C692-F9B5-41D2-B63E-CC647D322887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{A7DF87F2-19EE-4395-AE09-61C2D45C942C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DF87F2-19EE-4395-AE09-61C2D45C942C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DF87F2-19EE-4395-AE09-61C2D45C942C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE56C692-F9B5-41D2-B63E-CC647D322887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE56C692-F9B5-41D2-B63E-CC647D322887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE56C692-F9B5-41D2-B63E-CC647D322887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE56C692-F9B5-41D2-B63E-CC647D322887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

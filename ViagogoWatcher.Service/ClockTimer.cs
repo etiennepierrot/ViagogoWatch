@@ -3,7 +3,7 @@ using System.Timers;
 using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Mailings;
 
-namespace ViagogoWatcher.ConsoleWatcher
+namespace ViagogoWatcher.Service
 {
     public class ClockTimer : IClockTimer
     {
@@ -16,11 +16,10 @@ namespace ViagogoWatcher.ConsoleWatcher
         {
             _mailerService = mailerService;
             int interval = int.Parse(ConfigurationManager.AppSettings["TimingRefreshInMs"]);
-            _timer = new Timer(100000000)
+            _timer = new Timer(interval)
             {
                 AutoReset = true,
                 Enabled = true,
-
             };
             _timer.Elapsed += (sender, args) => Watch();
             _eventChecker = eventChecker;

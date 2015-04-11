@@ -1,4 +1,4 @@
-namespace ViagogoWatcher.ConsoleWatcher
+namespace ViagogoWatcher.Service
 {
     public interface IClockTimer
     {

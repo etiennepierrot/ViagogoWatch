@@ -1,12 +1,9 @@
-﻿using System.Configuration;
-using Topshelf;
-using ViagogoWatcher.Model.DependancyInjector;
-using ViagogoWatcher.Model.Events;
-using ViagogoWatcher.Model.Mailings;
+﻿using Topshelf;
+using ViagogoWatcher.Service;
 
 namespace ViagogoWatcher.ConsoleWatcher
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -14,7 +11,7 @@ namespace ViagogoWatcher.ConsoleWatcher
             {
                 x.Service<IClockTimer>(s =>                        
                 {
-                    s.ConstructUsing(name => ViagogoAlert());    
+                    s.ConstructUsing(name => ClockTimerBuilder.Build());    
                     s.WhenStarted(tc => tc.Watch());             
                     s.WhenStopped(tc => tc.Stop());              
                 });
@@ -27,29 +24,6 @@ namespace ViagogoWatcher.ConsoleWatcher
             
         }
 
-        private static IClockTimer ViagogoAlert()
-        {
-            IConfMailingFactory confMailingFactory = new ConfMailingFactoryBuilder()
-                .WithSettings(ConfigurationManager.AppSettings)
-                .Build();
-
-            ConfMailing confMailing = confMailingFactory.CreateConfMailing();
-
-            IMailerService mailerService = new MailerServiceBuilder()
-                .WithConfMailing(confMailing)
-                .WithStmpClientFacade(new SmtpClientFacade(confMailing))
-                .Build();
-
-            IEventChecker eventChecker = new EventCheckerBuilder()
-                .WithMailserService(mailerService)
-                .Build();
-
-            IClockTimer clockTimer = new CheckTimerBuilder()
-                .WithEventChecker(eventChecker)
-                .WithMailService(mailerService)
-                .Build();
-
-            return clockTimer;
-        }
+        
     }
 }

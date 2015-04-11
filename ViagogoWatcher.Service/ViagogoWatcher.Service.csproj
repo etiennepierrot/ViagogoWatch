@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4A933ED-A584-46D2-B667-098E0B7E74D2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{DE56C692-F9B5-41D2-B63E-CC647D322887}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ViagogoWatcher.ConsoleWatcher</RootNamespace>
-    <AssemblyName>ViagogoWatcher.ConsoleWatcher</AssemblyName>
+    <RootNamespace>ViagogoWatcher.Service</RootNamespace>
+    <AssemblyName>ViagogoWatcher.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,34 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Topshelf">
-      <HintPath>..\packages\Topshelf.3.1.4\lib\net40-full\Topshelf.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CheckTimerBuilder.cs" />
+    <Compile Include="ClockTimer.cs" />
+    <Compile Include="ClockTimerBuilder.cs" />
+    <Compile Include="IClockTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ViagogoWatcher.Service\ViagogoWatcher.Service.csproj">
-      <Project>{de56c692-f9b5-41d2-b63e-cc647d322887}</Project>
-      <Name>ViagogoWatcher.Service</Name>
+    <ProjectReference Include="..\ViagogoWatcher.Model\ViagogoWatcher.Model.csproj">
+      <Project>{a7df87f2-19ee-4395-ae09-61c2d45c942c}</Project>
+      <Name>ViagogoWatcher.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
