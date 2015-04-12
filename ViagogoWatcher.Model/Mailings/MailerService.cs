@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ViagogoWatcher.Model.Connector.Dto;
 
@@ -18,6 +19,11 @@ namespace ViagogoWatcher.Model.Mailings
 
         public void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products)
         {
+            if (!products.Any())
+            {
+                return;
+            }
+
             string subject = string.Format("[ViagogoWatcher] Alert : {0}", alertName);
 
             StringBuilder sb = new StringBuilder();

@@ -40,13 +40,14 @@ namespace ViagogoWatcher.Model.Events
         public void CheckEvent(Event @event)
         {
             var products = _viagogoConnector.GetProduct(@event.Url);
-            IEnumerable<Subscription> subscriptions =  _subscriptionRepository.GetSubscriptionsByEventId(@event.Id);
+            IEnumerable<Subscription> subscriptions = _subscriptionRepository.GetSubscriptionsByEvent(@event.Code);
 
             foreach (var subscription in subscriptions)
             {
                 var productDtosToSend = subscription.Match(products);
                 _mailerService.SendAlert(subscription.Email, @event.Name, productDtosToSend);
                 subscription.SetUrlSended(productDtosToSend.Select(x => new Url(x.BuyUrl)));
+                _subscriptionRepository.Save();
             }
 
         }

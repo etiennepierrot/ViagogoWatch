@@ -188,3 +188,21 @@ $RECYCLE.BIN/
 /ViagogoWatcher.Azure.Service/Profiles/viagogowatcherProduction.azurePubxml
 /ViagogoWatcher.Azure.Service/ServiceConfiguration.Cloud.cscfg
 
+/packages/EntityFramework.6.1.1/EntityFramework.6.1.1.nupkg
+/packages/EntityFramework.6.1.1/content/App.config.transform
+/packages/EntityFramework.6.1.1/content/Web.config.transform
+/packages/EntityFramework.6.1.1/lib/net40/EntityFramework.SqlServer.dll
+/packages/EntityFramework.6.1.1/lib/net40/EntityFramework.SqlServer.xml
+/packages/EntityFramework.6.1.1/lib/net40/EntityFramework.dll
+/packages/EntityFramework.6.1.1/lib/net40/EntityFramework.xml
+/packages/EntityFramework.6.1.1/lib/net45/EntityFramework.SqlServer.dll
+/packages/EntityFramework.6.1.1/lib/net45/EntityFramework.SqlServer.xml
+/packages/EntityFramework.6.1.1/lib/net45/EntityFramework.dll
+/packages/EntityFramework.6.1.1/lib/net45/EntityFramework.xml
+/packages/EntityFramework.6.1.1/tools/EntityFramework.PowerShell.Utility.dll
+/packages/EntityFramework.6.1.1/tools/EntityFramework.PowerShell.dll
+/packages/EntityFramework.6.1.1/tools/EntityFramework.psd1
+/packages/EntityFramework.6.1.1/tools/EntityFramework.psm1
+/packages/EntityFramework.6.1.1/tools/about_EntityFramework.help.txt
+/packages/EntityFramework.6.1.1/tools/init.ps1
+/packages/EntityFramework.6.1.1/tools/install.ps1

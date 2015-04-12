@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
+using ViagogoWatcher.Model.Connector.Dto;
 using ViagogoWatcher.Model.DependancyInjector;
 using ViagogoWatcher.Model.Mailings;
 
@@ -14,7 +16,7 @@ namespace ViagogoWatcher.Model.Test
         [SetUp]
         public void Setup()
         {
-            ConfMailing confMailing = new ConfMailing("no-reply@watcher.com", "admin@watcher.com", new Credential("login", "password"));
+            ConfMailing confMailing = new ConfMailing("admin@watcher.com", new Credential("login", "password"));
             _mock = new Mock<ISmtpClientFacade>();
 
             _mailerService = new MailerServiceBuilder()
@@ -31,5 +33,15 @@ namespace ViagogoWatcher.Model.Test
             _mock.Verify(x => x.Send("admin@watcher.com", "Service Stoped", string.Empty));
 
         }
+
+        [Test]public void
+        SendAlert_Should_Send_If_List_Product_Is_Empty()
+        {
+            _mailerService.SendAlert("mail","name", new List<ProductDto>());
+            _mock.Verify(x => x.Send(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never());
+
+        }
+
+
     }
 }

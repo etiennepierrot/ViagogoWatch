@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using ViagogoWatcher.Model.Persistances;
 
 namespace ViagogoWatcher.Model.Urls
 {
     public class Url
     {
-        private readonly string _url;
+        internal UrlState State;
 
         private sealed class URLEqualityComparer : IEqualityComparer<Url>
         {
@@ -14,12 +15,12 @@ namespace ViagogoWatcher.Model.Urls
                 if (ReferenceEquals(x, null)) return false;
                 if (ReferenceEquals(y, null)) return false;
                 if (x.GetType() != y.GetType()) return false;
-                return string.Equals(x._url, y._url);
+                return string.Equals(ToString(), y.ToString());
             }
 
             public int GetHashCode(Url obj)
             {
-                return (obj._url != null ? obj._url.GetHashCode() : 0);
+                return (obj != null ? obj.ToString().GetHashCode() : 0);
             }
         }
 
@@ -32,12 +33,13 @@ namespace ViagogoWatcher.Model.Urls
 
         public Url(string url)
         {
-            _url = url;
+            State = new UrlState();
+            State.Url = url;
         }
 
         public override string ToString()
         {
-            return _url;
+            return State.Url;
         }
     }
 }

@@ -30,10 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -65,10 +71,10 @@
     <Compile Include="DependancyInjector\EventCheckerBuilder.cs" />
     <Compile Include="DependancyInjector\MailerServiceBuilder.cs" />
     <Compile Include="DependancyInjector\StmpClientFacadeBuilder.cs" />
+    <Compile Include="Events\EFEventRepository.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\EventChecker.cs" />
     <Compile Include="Events\IEventRepository.cs" />
-    <Compile Include="HtmlViagogoParser\Class1.cs" />
     <Compile Include="Mailings\ConfMailing.cs" />
     <Compile Include="Mailings\ConfMailingFactory.cs" />
     <Compile Include="Mailings\Credential.cs" />
@@ -78,7 +84,13 @@
     <Compile Include="Mailings\MailerService.cs" />
     <Compile Include="Mailings\SmtpServer.cs" />
     <Compile Include="Mailings\SmtpClientFacade.cs" />
+    <Compile Include="Migrations\201504121524140_CreateSchema.cs" />
+    <Compile Include="Migrations\201504121524140_CreateSchema.Designer.cs">
+      <DependentUpon>201504121524140_CreateSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Moneys\Money.cs" />
+    <Compile Include="Persistances\ViagogoWatcherContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriptions\ISubscriptionRepository.cs" />
     <Compile Include="Subscriptions\Subscription.cs" />
@@ -92,6 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504121524140_CreateSchema.resx">
+      <DependentUpon>201504121524140_CreateSchema.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

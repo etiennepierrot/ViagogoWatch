@@ -21,16 +21,9 @@ namespace ViagogoWatcher.Model.Mailings
             mailMessage.Subject = subject;
             mailMessage.Text = body;
 
-            try
-            {
-                var transportWeb = new Web(_confMailing.Credential.GetNetworkCredential());
-                transportWeb.Deliver(mailMessage);
-            }
-            catch(Exception EX_NAME)
-            {
-                Console.WriteLine(EX_NAME);
-                throw;
-            }
+            var transportWeb = new Web(_confMailing.Credential.GetNetworkCredential());
+            transportWeb.Deliver(mailMessage);
+
         }
     }
 }

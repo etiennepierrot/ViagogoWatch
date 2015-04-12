@@ -5,21 +5,22 @@ namespace ViagogoWatcher.Model.Events
     public interface IEventRepository
     {
         IEnumerable<Event> GetAll();
+        void Add(Event @event);
     }
 
-    public class EventRepository : IEventRepository
+    public class TestEventRepository : IEventRepository
     {
         public IEnumerable<Event> GetAll()
         {
             return new List<Event>
             {
-                new Event
-                {
-                    Id = "E-915795",
-                    Url = "http://www.viagogo.fr/psg/Billets-de-sport/Football/Ligue-1/Paris-Saint-Germain-Billets/E-915795",
-                    Name = "PSG - Barca"
-                }
+                new Event( "E-915795","http://www.viagogo.fr/psg/Billets-de-sport/Football/Ligue-1/Paris-Saint-Germain-Billets/E-915795", "PSG- Barca")
             };
+        }
+
+        public void Add(Event @event)
+        {
+            
         }
     }
 }

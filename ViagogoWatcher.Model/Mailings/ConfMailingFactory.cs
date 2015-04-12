@@ -18,7 +18,7 @@ namespace ViagogoWatcher.Model.Mailings
             string mailAdmin = _settings["Mailing.AdminMail"];
 
             Credential credential = new Credential(login, password);
-            ConfMailing confMailing = new ConfMailing(login, mailAdmin, credential);
+            ConfMailing confMailing = new ConfMailing(mailAdmin, credential);
             return confMailing;
         }
     }

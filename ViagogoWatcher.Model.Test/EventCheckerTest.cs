@@ -26,11 +26,7 @@ namespace ViagogoWatcher.Model.Test
 
             _eventChecker = new EventChecker(_mockEventRepository.Object, _mockConnector.Object, _mockSubscriptionRepository.Object, new Mock<IMailerService>().Object);
 
-            _eventPSG_BARCA = new Event()
-            {
-                Id = "123",
-                Url = "http://viagogo.com/PSG-BARCA"
-            };
+            _eventPSG_BARCA = new Event("123","http://viagogo.com/PSG-BARCA", "PSG-BARCA");
         }
 
         [Test]public void
@@ -51,14 +47,14 @@ namespace ViagogoWatcher.Model.Test
         CheckEvent_Shoud_Get_The_Subscritions_Of_The_Event()
         {
             _eventChecker.CheckEvent(_eventPSG_BARCA);
-            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEventId("123"));
+            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent("123"));
         }
 
         [Test]public void
         CheckEvent_Shoud_Send_Alert_If_Subscrition_Has_A_Match()
         {
             _eventChecker.CheckEvent(_eventPSG_BARCA);
-            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEventId("123"));
+            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent("123"));
         }
 
 

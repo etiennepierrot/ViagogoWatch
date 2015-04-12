@@ -20,7 +20,7 @@ namespace ViagogoWatcher.ConsoleWatcher
                 x.SetDescription("ViagogoWatcher");       
                 x.SetDisplayName("ViagogoWatcher");                     
                 x.SetServiceName("ViagogoWatcher");                       
-            });      
+            });    
             
         }
 

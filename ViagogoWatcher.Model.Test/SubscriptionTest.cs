@@ -16,7 +16,7 @@ namespace ViagogoWatcher.Model.Test
         [SetUp]
         public void Setup()
         {
-            subscription = new Subscription(new Money(50), 2, "etienne.pierrot@gmail.com");
+            subscription = new Subscription(new Money(50), 2, "etienne.pierrot@gmail.com", "123");
             
         }
 

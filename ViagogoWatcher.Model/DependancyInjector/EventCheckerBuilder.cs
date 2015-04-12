@@ -1,6 +1,7 @@
 ﻿using ViagogoWatcher.Model.Connector;
 using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Mailings;
+using ViagogoWatcher.Model.Persistances;
 using ViagogoWatcher.Model.Subscriptions;
 
 namespace ViagogoWatcher.Model.DependancyInjector
@@ -14,9 +15,10 @@ namespace ViagogoWatcher.Model.DependancyInjector
 
         public EventCheckerBuilder()
         {
-            _eventRepository = new EventRepository();
+            ViagogoWatcherContext viagogoWatcherContext = new ViagogoWatcherContext();
+            _eventRepository = new EFEventRepository(viagogoWatcherContext);
             _viagogoConnector = new ViagogoConnector();
-            _subscriptionRepository = new SubscriptionRepository();
+            _subscriptionRepository = new EFSubscriptionRepository(viagogoWatcherContext);
             _mailerService = new MailerServiceBuilder().Build();
         }
 
