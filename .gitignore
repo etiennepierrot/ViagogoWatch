@@ -182,3 +182,8 @@ $RECYCLE.BIN/
 **/*.sln.ide
 
 /packages
+/ViagogoWatcher.WorkerRole/app.config
+/ViagogoWatcher.ConsoleWatcher/App.config
+/ViagogoWatcher.Azure.Service/Profiles/viagogowatcherProduction.azurePubxml
+/ViagogoWatcher.Azure.Service/ServiceConfiguration.Cloud.cscfg
+

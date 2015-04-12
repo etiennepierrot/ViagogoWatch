@@ -1,11 +1,7 @@
-using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using ViagogoWatcher.Model.Connector.Dto;
 using ViagogoWatcher.Model.DependancyInjector;
 using ViagogoWatcher.Model.Mailings;
-using ViagogoWatcher.Model.Moneys;
-using ViagogoWatcher.Model.Urls;
 
 namespace ViagogoWatcher.Model.Test
 {
@@ -18,7 +14,7 @@ namespace ViagogoWatcher.Model.Test
         [SetUp]
         public void Setup()
         {
-            ConfMailing confMailing = new ConfMailing("no-reply@watcher.com", "admin@watcher.com", new SmtpServer("localhost", 42), new Credential("login", "password"));
+            ConfMailing confMailing = new ConfMailing("no-reply@watcher.com", "admin@watcher.com", new Credential("login", "password"));
             _mock = new Mock<ISmtpClientFacade>();
 
             _mailerService = new MailerServiceBuilder()

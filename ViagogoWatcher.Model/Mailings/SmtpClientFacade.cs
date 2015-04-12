@@ -1,4 +1,6 @@
+using System;
 using System.Net.Mail;
+using SendGrid;
 
 namespace ViagogoWatcher.Model.Mailings
 {
@@ -13,14 +15,22 @@ namespace ViagogoWatcher.Model.Mailings
 
         public void Send(string mail, string subject, string body)
         {
-            MailMessage mailMessage = new MailMessage { From = new MailAddress(_confMailing.From + "@gmail.com") };
-            mailMessage.To.Add(mail);
+            var mailMessage = new SendGridMessage { From = new MailAddress(_confMailing.MailAdmin) };
+            mailMessage.AddTo(mail);
 
             mailMessage.Subject = subject;
-            mailMessage.Body = body;
+            mailMessage.Text = body;
 
-            SmtpClient smtpClient = _confMailing.GetSmtpClient();
-            smtpClient.Send(mailMessage);
+            try
+            {
+                var transportWeb = new Web(_confMailing.Credential.GetNetworkCredential());
+                transportWeb.Deliver(mailMessage);
+            }
+            catch(Exception EX_NAME)
+            {
+                Console.WriteLine(EX_NAME);
+                throw;
+            }
         }
     }
 }
