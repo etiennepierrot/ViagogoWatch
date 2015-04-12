@@ -26,7 +26,7 @@ namespace ViagogoWatcher.Model.Test
 
             _eventChecker = new EventChecker(_mockEventRepository.Object, _mockConnector.Object, _mockSubscriptionRepository.Object, new Mock<IMailerService>().Object);
 
-            _eventPSG_BARCA = new Event("123","http://viagogo.com/PSG-BARCA", "PSG-BARCA");
+            _eventPSG_BARCA = new Event("http://viagogo.com/PSG-BARCA", "PSG-BARCA");
         }
 
         [Test]public void

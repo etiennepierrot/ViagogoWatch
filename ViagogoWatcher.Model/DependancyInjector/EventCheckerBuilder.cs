@@ -6,6 +6,15 @@ using ViagogoWatcher.Model.Subscriptions;
 
 namespace ViagogoWatcher.Model.DependancyInjector
 {
+
+    public static class EventRepositoryBuilder
+    {
+        public static IEventRepository Build()
+        {
+            return new EFEventRepository(new ViagogoWatcherContext());
+        }
+    }
+
     public class EventCheckerBuilder
     {
         private IEventRepository _eventRepository;

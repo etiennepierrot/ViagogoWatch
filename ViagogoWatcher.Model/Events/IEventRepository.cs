@@ -14,7 +14,7 @@ namespace ViagogoWatcher.Model.Events
         {
             return new List<Event>
             {
-                new Event( "E-915795","http://www.viagogo.fr/psg/Billets-de-sport/Football/Ligue-1/Paris-Saint-Germain-Billets/E-915795", "PSG- Barca")
+                new Event( "http://www.viagogo.fr/psg/Billets-de-sport/Football/Ligue-1/Paris-Saint-Germain-Billets/E-915795", "PSG- Barca")
             };
         }
 

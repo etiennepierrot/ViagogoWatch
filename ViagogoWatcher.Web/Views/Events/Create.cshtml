@@ -1,0 +1,27 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Create event to check";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Create event to check</h2>
+
+<form action="Create" method="POST">
+    <table>
+        <tr>
+            <td>Url of the viagogo event to check :</td>
+            <td><input id="Url" name="Url" type="text"/></td>
+        </tr>
+                <tr>
+            <td>Name :</td>
+            <td><input id="Name" name="Name" type="text"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="create"/>
+            </td>
+        </tr>
+    </table>
+</form>

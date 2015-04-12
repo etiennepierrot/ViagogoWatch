@@ -1,3 +1,4 @@
+using System;
 using ViagogoWatcher.Model.Persistances;
 
 namespace ViagogoWatcher.Model.Events
@@ -21,10 +22,10 @@ namespace ViagogoWatcher.Model.Events
 
         internal EventState State;
 
-        public Event(string code, string url, string name)
+        public Event(string url, string name)
         {
             State = new EventState();
-            State.Code = code;
+            State.Code = Guid.NewGuid().ToString("N");
             State.Url = url;
             State.Name = name;
         }
