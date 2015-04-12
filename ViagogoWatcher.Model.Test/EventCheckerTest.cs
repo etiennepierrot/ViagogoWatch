@@ -47,14 +47,14 @@ namespace ViagogoWatcher.Model.Test
         CheckEvent_Shoud_Get_The_Subscritions_Of_The_Event()
         {
             _eventChecker.CheckEvent(_eventPSG_BARCA);
-            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent("123"));
+            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent(_eventPSG_BARCA.Code));
         }
 
         [Test]public void
         CheckEvent_Shoud_Send_Alert_If_Subscrition_Has_A_Match()
         {
             _eventChecker.CheckEvent(_eventPSG_BARCA);
-            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent("123"));
+            _mockSubscriptionRepository.Verify(x => x.GetSubscriptionsByEvent(_eventPSG_BARCA.Code));
         }
 
 

@@ -7,6 +7,14 @@ using ViagogoWatcher.Model.Subscriptions;
 namespace ViagogoWatcher.Model.DependancyInjector
 {
 
+    public static class SubscriptionRepositoryBuilder
+    {
+        public static ISubscriptionRepository Build()
+        {
+            return new EFSubscriptionRepository(new ViagogoWatcherContext());
+        }
+    }
+
     public static class EventRepositoryBuilder
     {
         public static IEventRepository Build()

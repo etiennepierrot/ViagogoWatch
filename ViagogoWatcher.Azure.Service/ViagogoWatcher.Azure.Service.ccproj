@@ -12,6 +12,7 @@
     <AssemblyName>ViagogoWatcher.Azure.Service</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>ViagogoWatcher.Azure.Service</Name>
+    <PackageEnableRemoteDebugger>False</PackageEnableRemoteDebugger>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +38,14 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ViagogoWatcher.Web\ViagogoWatcher.Web.csproj">
+      <Name>ViagogoWatcher.Web</Name>
+      <Project>{563eb604-3aec-4df9-8ea2-36f8b82afa43}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>ViagogoWatcher.Web</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
     <ProjectReference Include="..\ViagogoWatcher.WorkerRole\ViagogoWatcher.WorkerRole.csproj">
       <Name>ViagogoWatcher.WorkerRole</Name>
       <Project>{6c764dc2-6834-4d91-80e2-2623bef38c86}</Project>
@@ -48,9 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Profiles" />
+    <Folder Include="ViagogoWatcher.WebContent\" />
     <Folder Include="ViagogoWatcher.WorkerRoleContent\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ViagogoWatcher.WebContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ViagogoWatcher.WorkerRoleContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
