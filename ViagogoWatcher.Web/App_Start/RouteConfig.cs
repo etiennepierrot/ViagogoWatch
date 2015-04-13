@@ -13,6 +13,7 @@ namespace ViagogoWatcher.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute("Subscribe", "s/{codeEvent}", new { controller = "Subscriptions", action = "Create" });
+            routes.MapRoute("UnSubscribe", "us/{codeSubscription}", new { controller = "Subscriptions", action = "UnSubscribe" });
 
             routes.MapRoute(
                 name: "Default",

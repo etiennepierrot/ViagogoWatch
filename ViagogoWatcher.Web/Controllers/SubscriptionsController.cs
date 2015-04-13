@@ -73,11 +73,13 @@ namespace ViagogoWatcher.Web.Controllers
             }
         }
 
-        //
-        // GET: /Subscriptions/Edit/5
-        public ActionResult Edit(int id)
+
+
+        [HttpGet]
+        public ActionResult UnSubscribe(string codeSubscription)
         {
-            return View();
+            _subscriptionRepository.DeleteByCode(codeSubscription);
+            return View("Unsubcribe");
         }
 
         //
