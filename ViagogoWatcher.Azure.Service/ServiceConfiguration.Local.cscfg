@@ -9,7 +9,7 @@
   <Role name="ViagogoWatcher.Web">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storageviagogo;AccountKey=6gA1dOphYgMEgSE2l/ZOxU8la7Pdn1ZBXapkHoeAGwVmW5Za1S38eAw5skA/Tgbp0tezYLI5wEO8865zY826uw==" />
       <Setting name="Setting1" value="" />
     </ConfigurationSettings>
   </Role>
