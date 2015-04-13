@@ -84,9 +84,9 @@
     <Compile Include="Mailings\MailerService.cs" />
     <Compile Include="Mailings\SmtpServer.cs" />
     <Compile Include="Mailings\SmtpClientFacade.cs" />
-    <Compile Include="Migrations\201504121524140_CreateSchema.cs" />
-    <Compile Include="Migrations\201504121524140_CreateSchema.Designer.cs">
-      <DependentUpon>201504121524140_CreateSchema.cs</DependentUpon>
+    <Compile Include="Migrations\201504130129183_Initial.cs" />
+    <Compile Include="Migrations\201504130129183_Initial.Designer.cs">
+      <DependentUpon>201504130129183_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Moneys\Money.cs" />
@@ -106,8 +106,8 @@
     <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504121524140_CreateSchema.resx">
-      <DependentUpon>201504121524140_CreateSchema.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504130129183_Initial.resx">
+      <DependentUpon>201504130129183_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

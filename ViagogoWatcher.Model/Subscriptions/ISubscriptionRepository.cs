@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using ViagogoWatcher.Model.Moneys;
 using ViagogoWatcher.Model.Persistances;
 
 namespace ViagogoWatcher.Model.Subscriptions
@@ -10,6 +9,7 @@ namespace ViagogoWatcher.Model.Subscriptions
         IEnumerable<Subscription> GetSubscriptionsByEvent(string codeEvent);
         void Add(Subscription subscription);
         void Save();
+        void DeleteByCode(string codeSubscription);
     }
 
     public class EFSubscriptionRepository : ISubscriptionRepository
@@ -40,26 +40,20 @@ namespace ViagogoWatcher.Model.Subscriptions
         {
             _viagogoWatcherContext.SaveChanges();
         }
-    }
 
-    public class TestSubscriptionRepository : ISubscriptionRepository
-    {
-        public IEnumerable<Subscription> GetSubscriptionsByEvent(string codeEvent)
+        public void DeleteByCode(string codeSubscription)
         {
-            return new List<Subscription>
-            {
-                new Subscription(new Money(150), 1, "etienne.pierrot@gmail.com", codeEvent)
-            };
+            var subcription = _viagogoWatcherContext.Subscriptions.Single(x => x.CodeSubscription == codeSubscription);
+            DeleteSubsciption(subcription);
         }
 
-        public void Add(Subscription subscription)
+        private void DeleteSubsciption(SubscriptionState subcription)
         {
-            
-        }
-
-        public void Save()
-        {
-            
+            var subscriptionStates = _viagogoWatcherContext.Set<SubscriptionState>();
+            var urls = _viagogoWatcherContext.Set<UrlState>();
+            urls.RemoveRange(subcription.UrlStates);
+            subscriptionStates.Remove(subcription);
+            _viagogoWatcherContext.SaveChanges();
         }
     }
 }

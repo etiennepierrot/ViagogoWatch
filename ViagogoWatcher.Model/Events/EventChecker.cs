@@ -45,7 +45,7 @@ namespace ViagogoWatcher.Model.Events
             foreach (var subscription in subscriptions)
             {
                 var productDtosToSend = subscription.Match(products);
-                _mailerService.SendAlert(subscription.Email, @event.Name, productDtosToSend);
+                _mailerService.SendAlert(subscription.Email, @event.Name, productDtosToSend, subscription.CodeSubscription);
                 subscription.SetUrlSended(productDtosToSend.Select(x => new Url(x.BuyUrl)));
                 _subscriptionRepository.Save();
             }

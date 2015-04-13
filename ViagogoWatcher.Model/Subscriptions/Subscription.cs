@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ViagogoWatcher.Model.Connector.Dto;
@@ -12,6 +13,11 @@ namespace ViagogoWatcher.Model.Subscriptions
         public int NBPlace
         {
             get { return State.NBPlace; }
+        }
+
+        public string CodeSubscription
+        {
+            get { return State.CodeSubscription; }
         }
 
         public string Email
@@ -46,6 +52,7 @@ namespace ViagogoWatcher.Model.Subscriptions
             State.Email = email;
             State.CodeEvent = codeEvent;
             State.MaxPricing = maxPricing.Amount;
+            State.CodeSubscription = Guid.NewGuid().ToString("N").Substring(0, 6);
             State.UrlStates = new List<UrlState>();
         }
 

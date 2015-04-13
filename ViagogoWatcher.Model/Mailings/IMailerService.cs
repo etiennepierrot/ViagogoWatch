@@ -5,7 +5,7 @@ namespace ViagogoWatcher.Model.Mailings
 {
     public interface IMailerService
     {
-        void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products);
+        void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products, string codeSubscription);
         void Stop();
     }
 }

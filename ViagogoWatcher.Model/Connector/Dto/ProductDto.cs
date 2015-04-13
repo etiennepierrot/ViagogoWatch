@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ViagogoWatcher.Model.Urls;
 
 namespace ViagogoWatcher.Model.Connector.Dto
 {
@@ -14,7 +13,7 @@ namespace ViagogoWatcher.Model.Connector.Dto
 
         public override string ToString()
         {
-            return string.Format("TicketClassName: {0}, BuyUrl: {1}, AvailableQuantities: {2}, Section: {3}, RawPrice: {4}", TicketClassName, BuyUrl, AvailableQuantities.Max(), Section, RawPrice);
+            return string.Format("BuyUrl: {0} <br/>AvailableQuantities: {1} <br/>Section: {2}<br/>RawPrice: {3}", BuyUrl, AvailableQuantities.Max(), Section, RawPrice);
         }
     }
 }

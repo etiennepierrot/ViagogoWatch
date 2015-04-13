@@ -37,7 +37,7 @@ namespace ViagogoWatcher.Model.Test
         [Test]public void
         SendAlert_Should_Send_If_List_Product_Is_Empty()
         {
-            _mailerService.SendAlert("mail","name", new List<ProductDto>());
+            _mailerService.SendAlert("mail","name", new List<ProductDto>(), "123");
             _mock.Verify(x => x.Send(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never());
 
         }

@@ -25,6 +25,7 @@ namespace ViagogoWatcher.Model.Persistances
         public virtual ICollection<UrlState> UrlStates { get; set; } 
         public string CodeEvent { get; set; }
         public int NBPlace { get; set; }
+        public string CodeSubscription { get; set; }
     }
 
     public class EventState

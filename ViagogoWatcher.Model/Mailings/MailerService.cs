@@ -17,7 +17,7 @@ namespace ViagogoWatcher.Model.Mailings
         }
 
 
-        public void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products)
+        public void SendAlert(string mailTo, string alertName, IEnumerable<ProductDto> products, string codeSubscription)
         {
             if (!products.Any())
             {
@@ -31,7 +31,9 @@ namespace ViagogoWatcher.Model.Mailings
             foreach (var productDto in products)
             {
                 sb.AppendLine(productDto.ToString());
+                sb.AppendLine("<br/>");
             }
+            sb.AppendFormat("<br/>For unsubscribe, go here : http://viagogowatcher.cloudapp.net/us/{0}", codeSubscription);
 
             _smtpClientFacade.Send(mailTo, subject, sb.ToString());
         }

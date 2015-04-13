@@ -3,7 +3,7 @@ namespace ViagogoWatcher.Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateSchema : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -27,6 +27,7 @@ namespace ViagogoWatcher.Model.Migrations
                         MaxPricing = c.Long(nullable: false),
                         CodeEvent = c.String(),
                         NBPlace = c.Int(nullable: false),
+                        CodeSubscription = c.String(),
                     })
                 .PrimaryKey(t => t.SubscriptionId);
             

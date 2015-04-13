@@ -19,7 +19,7 @@ namespace ViagogoWatcher.Model.Mailings
             mailMessage.AddTo(mail);
 
             mailMessage.Subject = subject;
-            mailMessage.Text = body;
+            mailMessage.Html = body;
 
             var transportWeb = new Web(_confMailing.Credential.GetNetworkCredential());
             transportWeb.Deliver(mailMessage);
