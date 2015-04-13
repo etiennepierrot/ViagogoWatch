@@ -5,31 +5,29 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
-<h2>Create subscription to an avent</h2>
 
-<form action="Create" method="POST">
-    <table>
-        <input type="hidden" value="@Model.codeEvent" name="codeEvent"/>
-        <tr>
-            <td>Email :</td>
-            <td>
-                <input id="Email" name="email" type="text" /></td>
-        </tr>
-        <tr>
-            <td>Max Price (without Viagogo commission) :</td>
-            <td>
-                <input id="amount" name="amount" type="text" /></td>
-        </tr>
-        <tr>
-            <td>Nb Places :</td>
-            <td>
-                <input id="nbPlace" name="nbPlace" type="text" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="create" />
-            </td>
-        </tr>
-    </table>
-</form>
+
+<div class="container">
+
+    <form class="form-horizontal" action="Create" method="POST">
+        <input type="hidden" value="@Model.CodeEvent" name="codeEvent"/>
+
+        <h2>Create subscription to @Model.NameEvent </h2>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" class="form-control" placeholder="Email" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="amount">Max Price (without Viagogo commission) :</label>
+            <input type="text" id="amount" name="amount" class="form-control" placeholder="amount" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity :</label>
+            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="quantity" required>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Subscribe</button>
+    </form>
+
+</div>
+

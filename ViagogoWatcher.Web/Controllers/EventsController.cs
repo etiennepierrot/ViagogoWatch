@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using ViagogoWatcher.Model.DependancyInjector;
 using ViagogoWatcher.Model.Events;
 
@@ -42,7 +43,15 @@ namespace ViagogoWatcher.Web.Controllers
         {
             Event @event = new Event(url, name);
             _eventRepository.Add(@event);
-            return View();
+
+            var urlSubscribe = Url.RouteUrl("Subscribe", new {codeEvent = @event.Code});
+
+            var dto = new SuccessEventCrationDto
+            {
+                Url = urlSubscribe
+            };
+
+            return View("Success", dto);
         }
 
 

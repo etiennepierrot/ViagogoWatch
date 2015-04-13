@@ -20,12 +20,14 @@ namespace ViagogoWatcher.Model.Events
             get { return State.Name; }
         }
 
+        public static Event NotFound = new Event(null, null);
+
         internal EventState State;
 
         public Event(string url, string name)
         {
             State = new EventState();
-            State.Code = Guid.NewGuid().ToString("N");
+            State.Code = Guid.NewGuid().ToString("N").Substring(0,6);
             State.Url = url;
             State.Name = name;
         }

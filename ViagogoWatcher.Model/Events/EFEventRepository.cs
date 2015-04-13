@@ -27,5 +27,15 @@ namespace ViagogoWatcher.Model.Events
             events.Add(@event.State);
             _viagogoWatcherContext.SaveChanges();
         }
+
+        public Event FindByCode(string codeEvent)
+        {
+            var @event = _viagogoWatcherContext.Events.SingleOrDefault(x => x.Code == codeEvent);
+            if (@event == null)
+            {
+                return Event.NotFound;
+            }
+            return new Event(@event);
+        }
     }
 }

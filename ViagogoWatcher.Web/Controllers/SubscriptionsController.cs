@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViagogoWatcher.Model.DependancyInjector;
+using ViagogoWatcher.Model.Events;
 using ViagogoWatcher.Model.Moneys;
 using ViagogoWatcher.Model.Subscriptions;
 
@@ -11,11 +10,13 @@ namespace ViagogoWatcher.Web.Controllers
 {
     public class SubscriptionsController : Controller
     {
-        private ISubscriptionRepository _subscriptionRepository;
+        private readonly ISubscriptionRepository _subscriptionRepository;
+        private readonly IEventRepository _eventRepository;
 
         public SubscriptionsController()
         {
             _subscriptionRepository =  SubscriptionRepositoryBuilder.Build();
+            _eventRepository = EventRepositoryBuilder.Build();
         }
 
         //
@@ -36,26 +37,35 @@ namespace ViagogoWatcher.Web.Controllers
         // GET: /Subscriptions/Create
         public ActionResult Create(string codeEvent)
         {
+            Event @event = _eventRepository.FindByCode(codeEvent);
+
+            if (@event == Event.NotFound)
+            {
+                throw new HttpException(404, "event not found");
+            }
+
             DisplayCreateSubscriptionDto displayCreateSubscriptionDto = new DisplayCreateSubscriptionDto
             {
-                codeEvent = codeEvent
+                CodeEvent = codeEvent,
+                NameEvent = @event.Name   
             };
+
             return View(displayCreateSubscriptionDto);
         }
 
         //
         // POST: /Subscriptions/Create
         [HttpPost]
-        public ActionResult Create(string codeEvent, string email, string amount, string nbPlace)
+        public ActionResult Create(string codeEvent, string email, string amount, string quantity)
         {
             try
             {
                 int intAmount = int.Parse(amount);
-                int intNbPlace = int.Parse(nbPlace);
+                int intNbPlace = int.Parse(quantity);
                 Subscription subscription = new Subscription(new Money(intAmount), intNbPlace, email, codeEvent);
                 _subscriptionRepository.Add(subscription);
 
-                return Create(codeEvent);
+                return View("Success");
             }
             catch(Exception e)
             {
@@ -110,10 +120,5 @@ namespace ViagogoWatcher.Web.Controllers
                 return View();
             }
         }
-    }
-
-    public class DisplayCreateSubscriptionDto
-    {
-        public string codeEvent { get; set; }
     }
 }
